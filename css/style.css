@@ -1,0 +1,625 @@
+/* =========================================================
+   WORD FORGE - GLOBAL STYLES
+   ========================================================= */
+
+:root {
+    --bg-color: #f7f7f8;
+    --surface-color: #ffffff;
+    --text-color: #202124;
+    --muted-text: #6b7280;
+    --border-color: #d1d5db;
+
+    --primary-color: #111827;
+    --primary-hover: #374151;
+
+    --correct-color: #6aaa64;
+    --present-color: #c9b458;
+    --absent-color: #787c7e;
+
+    --tile-size: 58px;
+    --key-height: 54px;
+
+    --radius-small: 6px;
+    --radius-medium: 10px;
+    --radius-large: 16px;
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background-color: var(--bg-color);
+    color: var(--text-color);
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.site-header {
+    width: 100%;
+
+    background-color: var(--surface-color);
+
+    border-bottom: 1px solid var(--border-color);
+
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
+}
+
+
+.header-container {
+    width: min(1100px, 92%);
+
+    min-height: 70px;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+.logo {
+    color: var(--text-color);
+
+    text-decoration: none;
+
+    font-size: 1.5rem;
+    font-weight: 800;
+
+    letter-spacing: -0.5px;
+}
+
+
+.main-nav {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+.nav-link {
+    color: var(--muted-text);
+
+    text-decoration: none;
+
+    padding: 10px 14px;
+
+    border-radius: var(--radius-small);
+
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.nav-link:hover {
+    background-color: #f0f0f1;
+    color: var(--text-color);
+}
+
+
+.nav-link.active {
+    color: var(--text-color);
+    background-color: #eeeeef;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.main-content {
+    width: min(1100px, 92%);
+
+    margin: 0 auto;
+
+    flex: 1;
+
+    padding: 45px 0 60px;
+}
+
+
+/* =========================================================
+   GAME INTRO
+   ========================================================= */
+
+.game-intro {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+
+.game-mode {
+    color: var(--muted-text);
+
+    font-size: 0.75rem;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+}
+
+
+.game-intro h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+
+    line-height: 1.1;
+
+    margin-bottom: 12px;
+}
+
+
+.game-description {
+    color: var(--muted-text);
+
+    font-size: 1rem;
+}
+
+
+/* =========================================================
+   GAME SECTION
+   ========================================================= */
+
+.game-section {
+    display: flex;
+
+    justify-content: center;
+
+    margin-bottom: 25px;
+}
+
+
+.game-board {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.guess-row {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, var(--tile-size));
+
+    gap: 7px;
+}
+
+
+.letter-tile {
+    width: var(--tile-size);
+    height: var(--tile-size);
+
+    border: 2px solid var(--border-color);
+
+    background-color: var(--surface-color);
+
+    border-radius: var(--radius-small);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.7rem;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    transition:
+        transform 0.15s ease,
+        border-color 0.15s ease,
+        background-color 0.15s ease;
+}
+
+
+/* These classes will be used by JavaScript later */
+
+.letter-tile.correct {
+    background-color: var(--correct-color);
+
+    border-color: var(--correct-color);
+
+    color: white;
+}
+
+
+.letter-tile.present {
+    background-color: var(--present-color);
+
+    border-color: var(--present-color);
+
+    color: white;
+}
+
+
+.letter-tile.absent {
+    background-color: var(--absent-color);
+
+    border-color: var(--absent-color);
+
+    color: white;
+}
+
+
+/* =========================================================
+   GAME MESSAGE
+   ========================================================= */
+
+.game-message {
+    min-height: 32px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 20px;
+
+    text-align: center;
+}
+
+
+.game-message p {
+    color: var(--muted-text);
+
+    font-size: 0.95rem;
+}
+
+
+/* =========================================================
+   KEYBOARD
+   ========================================================= */
+
+.keyboard-section {
+    width: min(600px, 100%);
+
+    margin: 0 auto;
+}
+
+
+.keyboard-row {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    margin-bottom: 7px;
+}
+
+
+.key {
+    min-width: 42px;
+
+    height: var(--key-height);
+
+    padding: 0 8px;
+
+    border: 1px solid var(--border-color);
+
+    border-radius: var(--radius-small);
+
+    background-color: #e5e7eb;
+
+    color: var(--text-color);
+
+    font-size: 0.85rem;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.1s ease,
+        background-color 0.15s ease,
+        color 0.15s ease;
+}
+
+
+.key:hover {
+    background-color: #d1d5db;
+}
+
+
+.key:active {
+    transform: scale(0.94);
+}
+
+
+.key.key-wide {
+    min-width: 70px;
+
+    font-size: 0.72rem;
+}
+
+
+/* Keyboard states for JavaScript */
+
+.key.correct {
+    background-color: var(--correct-color);
+
+    border-color: var(--correct-color);
+
+    color: white;
+}
+
+
+.key.present {
+    background-color: var(--present-color);
+
+    border-color: var(--present-color);
+
+    color: white;
+}
+
+
+.key.absent {
+    background-color: var(--absent-color);
+
+    border-color: var(--absent-color);
+
+    color: white;
+}
+
+
+/* =========================================================
+   PRACTICE SECTION
+   ========================================================= */
+
+.practice-section {
+    margin-top: 40px;
+
+    text-align: center;
+}
+
+
+.practice-section p {
+    color: var(--muted-text);
+
+    margin-bottom: 12px;
+}
+
+
+.secondary-button {
+    border: 1px solid var(--border-color);
+
+    background-color: var(--surface-color);
+
+    color: var(--text-color);
+
+    padding: 11px 18px;
+
+    border-radius: var(--radius-small);
+
+    font-size: 0.9rem;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+.secondary-button:hover {
+    background-color: #eeeeef;
+}
+
+
+.secondary-button:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.site-footer {
+    width: 100%;
+
+    border-top: 1px solid var(--border-color);
+
+    background-color: var(--surface-color);
+
+    padding: 22px;
+
+    text-align: center;
+}
+
+
+.site-footer p {
+    color: var(--muted-text);
+
+    font-size: 0.8rem;
+}
+
+
+/* =========================================================
+   RESPONSIVE DESIGN - TABLET
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    :root {
+        --tile-size: 52px;
+        --key-height: 50px;
+    }
+
+
+    .main-content {
+        padding-top: 35px;
+    }
+
+
+    .header-container {
+        min-height: 64px;
+    }
+
+
+    .logo {
+        font-size: 1.3rem;
+    }
+
+
+    .nav-link {
+        padding: 8px 10px;
+    }
+
+
+    .key {
+        min-width: 38px;
+
+        padding: 0 6px;
+    }
+
+
+    .key.key-wide {
+        min-width: 62px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE DESIGN - MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    :root {
+        --tile-size: 48px;
+        --key-height: 46px;
+    }
+
+
+    .header-container {
+        width: 94%;
+    }
+
+
+    .main-content {
+        width: 94%;
+
+        padding-top: 28px;
+    }
+
+
+    .main-nav {
+        gap: 2px;
+    }
+
+
+    .nav-link {
+        padding: 7px 8px;
+
+        font-size: 0.8rem;
+    }
+
+
+    .game-intro {
+        margin-bottom: 24px;
+    }
+
+
+    .game-description {
+        font-size: 0.9rem;
+    }
+
+
+    .guess-row {
+        gap: 5px;
+    }
+
+
+    .game-board {
+        gap: 5px;
+    }
+
+
+    .letter-tile {
+        font-size: 1.35rem;
+    }
+
+
+    .keyboard-section {
+        width: 100%;
+    }
+
+
+    .keyboard-row {
+        gap: 4px;
+    }
+
+
+    .key {
+        min-width: 0;
+
+        flex: 1;
+
+        height: var(--key-height);
+
+        padding: 0 3px;
+
+        font-size: 0.75rem;
+    }
+
+
+    .key.key-wide {
+        flex: 1.4;
+
+        min-width: 0;
+
+        font-size: 0.62rem;
+    }
+
+
+    .site-footer {
+        padding: 18px 10px;
+    }
+}
