@@ -322,36 +322,63 @@ function submitGuess() {
     }
 
 
+    // Save the submitted word before clearing currentGuess
+    const submittedGuess = currentGuess;
+
+
+    // Evaluate the submitted word
     const result =
         evaluateGuess(
-            currentGuess,
+            submittedGuess,
             targetWord
         );
 
 
+    // Display the result on the current row
     displayResult(result);
 
 
-    if (currentGuess === targetWord) {
+    // Check if the player won
+    if (submittedGuess === targetWord) {
 
         gameOver = true;
 
+        const attempts = currentRow + 1;
+
+        saveGameResult({
+            won: true,
+            attempts: attempts,
+            word: targetWord,
+            mode: gameMode
+        });
+
         showMessage(
-            `You won in ${currentRow + 1} attempts!`
+            `You won in ${attempts} attempts!`
         );
 
         return;
     }
 
 
+    // Move to the next row
     currentRow++;
 
+
+    // Clear input for the NEXT guess
     currentGuess = "";
 
 
+    // Check if all attempts are used
     if (currentRow >= MAX_ATTEMPTS) {
 
         gameOver = true;
+
+        saveGameResult({
+            won: false,
+            attempts: MAX_ATTEMPTS,
+            word: targetWord,
+            mode: gameMode
+        });
 
         showMessage(
             `Game over! The word was ${targetWord}.`
@@ -364,7 +391,6 @@ function submitGuess() {
     showMessage("Keep going!");
 
 }
-
 
 /* =========================================================
    EVALUATE GUESS
@@ -563,35 +589,25 @@ keyboardKeys.forEach(key => {
 /* =========================================================
    PHYSICAL KEYBOARD EVENTS
    ========================================================= */
-
+   
 document.addEventListener("keydown", event => {
-
-    const key =
-        event.key.toUpperCase();
-
+    const key = event.key.toUpperCase();
 
     if (key === "ENTER") {
-
+        event.preventDefault();
         handleKey("ENTER");
-
         return;
     }
-
 
     if (key === "BACKSPACE") {
-
+        event.preventDefault();
         handleKey("BACKSPACE");
-
         return;
     }
 
-
     if (/^[A-Z]$/.test(key)) {
-
         handleKey(key);
-
     }
-
 });
 
 
