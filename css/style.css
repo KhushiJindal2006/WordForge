@@ -623,3 +623,134 @@ body {
         padding: 18px 10px;
     }
 }
+
+
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
+
+.page-intro {
+    width: min(1000px, 92%);
+    margin: 0 auto;
+    padding: 45px 0 30px;
+    text-align: center;
+}
+
+.page-intro h1 {
+    margin: 8px 0;
+    font-size: 2.2rem;
+}
+
+.page-intro p:last-child {
+    margin: 0;
+    color: var(--text-muted);
+}
+
+.stats-section {
+    width: min(1000px, 92%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+}
+
+.stat-card {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-medium);
+    padding: 24px 16px;
+    text-align: center;
+    box-shadow: var(--shadow-small);
+}
+
+.stat-card h2 {
+    margin: 0 0 12px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.stat-card p {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.distribution-section {
+    width: min(700px, 92%);
+    margin: 45px auto 60px;
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-medium);
+    padding: 28px;
+    box-shadow: var(--shadow-small);
+}
+
+.distribution-section h2 {
+    margin: 0 0 25px;
+    text-align: center;
+}
+
+.distribution-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.distribution-row > span:first-child {
+    width: 20px;
+    font-weight: 700;
+}
+
+.distribution-bar {
+    flex: 1;
+    min-height: 32px;
+    background-color: var(--border-color);
+    border-radius: var(--radius-small);
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+}
+
+.distribution-bar span {
+    font-weight: 700;
+}
+
+/* =========================================================
+   DASHBOARD RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (max-width: 900px) {
+    .stats-section {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .page-intro {
+        padding: 30px 0 25px;
+    }
+
+    .page-intro h1 {
+        font-size: 1.8rem;
+    }
+
+    .stats-section {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 20px 12px;
+    }
+
+    .stat-card p {
+        font-size: 1.6rem;
+    }
+
+    .distribution-section {
+        padding: 20px;
+        margin-top: 30px;
+    }
+}

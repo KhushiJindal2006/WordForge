@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>WordForge — Dashboard</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="header-container">
+
+            <a href="index.html" class="logo">
+                WordForge
+            </a>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="index.html">Game</a>
+                <a href="dashboard.html" class="active">
+                    Dashboard
+                </a>
+            </nav>
+
+        </div>
+    </header>
+
+    <main>
+
+        <section class="page-intro">
+            <p class="eyebrow">PLAYER DASHBOARD</p>
+
+            <h1>Your Statistics</h1>
+
+            <p>
+                Track your WordForge performance,
+                streaks, and guessing progress.
+            </p>
+        </section>
+
+        <section class="stats-section">
+
+            <div class="stat-card">
+                <h2>Games Played</h2>
+                <p id="games-played">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>Games Won</h2>
+                <p id="games-won">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>Win Rate</h2>
+                <p id="win-rate">0%</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>Current Streak</h2>
+                <p id="current-streak">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>Best Streak</h2>
+                <p id="best-streak">0</p>
+            </div>
+
+        </section>
+
+        <section class="distribution-section">
+
+            <h2>Guess Distribution</h2>
+
+            <div id="guess-distribution">
+
+                <div class="distribution-row">
+                    <span>1</span>
+                    <div class="distribution-bar">
+                        <span id="guess-1">0</span>
+                    </div>
+                </div>
+
+                <div class="distribution-row">
+                    <span>2</span>
+                    <div class="distribution-bar">
+                        <span id="guess-2">0</span>
+                    </div>
+                </div>
+
+                <div class="distribution-row">
+                    <span>3</span>
+                    <div class="distribution-bar">
+                        <span id="guess-3">0</span>
+                    </div>
+                </div>
+
+                <div class="distribution-row">
+                    <span>4</span>
+                    <div class="distribution-bar">
+                        <span id="guess-4">0</span>
+                    </div>
+                </div>
+
+                <div class="distribution-row">
+                    <span>5</span>
+                    <div class="distribution-bar">
+                        <span id="guess-5">0</span>
+                    </div>
+                </div>
+
+                <div class="distribution-row">
+                    <span>6</span>
+                    <div class="distribution-bar">
+                        <span id="guess-6">0</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>WordForge — Word Puzzle & Challenge Platform</p>
+    </footer>
+
+    <script src="js/storage.js"></script>
+    <script src="js/dashboard.js"></script>
+
+</body>
+</html>
