@@ -754,3 +754,90 @@ body {
         margin-top: 30px;
     }
 }
+
+/* =========================================================
+   GAME HISTORY
+   ========================================================= */
+
+.history-section {
+    width: min(1000px, 92%);
+    margin: 45px auto 60px;
+}
+
+.history-section h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.history-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-medium);
+    box-shadow: var(--shadow-small);
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+.history-table th,
+.history-table td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.history-table th {
+    background-color: var(--border-color);
+    font-size: 0.9rem;
+}
+
+.history-table td {
+    font-size: 0.95rem;
+}
+
+.history-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.history-table tbody tr:hover {
+    background-color: var(--background-color);
+}
+
+@media (max-width: 600px) {
+
+    .history-section {
+        margin-top: 30px;
+    }
+
+    .history-table th,
+    .history-table td {
+        padding: 12px;
+        font-size: 0.85rem;
+    }
+}
+
+.history-delete-button {
+    padding: 7px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-small);
+    background-color: var(--surface-color);
+    color: var(--text-color);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.history-delete-button:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-small);
+}
+
+.history-delete-button:active {
+    transform: translateY(0);
+}

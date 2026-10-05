@@ -60,4 +60,112 @@ function displayGuessDistribution(distribution) {
     }
 }
 
+async function displayHistory() {
+
+    const historyList =
+        document.getElementById("history-list");
+
+    try {
+
+        const history =
+            await getGameHistory();
+
+        historyList.innerHTML = "";
+
+        if (history.length === 0) {
+
+            historyList.innerHTML = `
+                <tr>
+                    <td colspan="5">
+                        No games played yet.
+                    </td>
+                </tr>
+            `;
+
+            return;
+        }
+
+        history.reverse().forEach(game => {
+
+            const row =
+                document.createElement("tr");
+
+            const date =
+                new Date(game.date);
+
+            const formattedDate =
+                date.toLocaleDateString();
+
+            const result =
+                game.won ? "Won" : "Lost";
+
+            row.innerHTML = `
+                <td>${formattedDate}</td>
+                <td>${game.mode}</td>
+                <td>${game.word}</td>
+                <td>${result}</td>
+                <td>${game.attempts}</td>
+                <td>
+                <button
+                    class="history-delete-button"
+                    type="button"
+                    data-id="${game.id}"
+                >
+                    Delete
+                </button>
+                </td>
+            `;
+
+            const deleteButton =
+                row.querySelector(
+                    ".history-delete-button"
+                );
+
+            deleteButton.addEventListener(
+                "click",
+                () => {
+                    handleDeleteHistory(game.id);
+                }
+            );
+
+            historyList.appendChild(row);
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Could not load game history:",
+            error
+        );
+    }
+}
+
+async function handleDeleteHistory(id) {
+
+    try {
+
+        await deleteGameHistory(id);
+
+        displayHistory();
+
+    } catch (error) {
+
+        console.error(
+            "Could not delete game history:",
+            error
+        );
+    }
+}
+
 displayStats();
+
+openDatabase()
+    .then(() => {
+        displayHistory();
+    })
+    .catch(error => {
+        console.error(
+            "Could not initialize IndexedDB:",
+            error
+        );
+    });

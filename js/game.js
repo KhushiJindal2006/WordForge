@@ -326,6 +326,14 @@ function submitGuess() {
             mode: gameMode
         });
 
+        saveGameHistory({
+            date: new Date().toISOString(),
+            word: targetWord,
+            won: true,
+            attempts: attempts,
+            mode: gameMode
+        });
+
         showMessage(
             `You won in ${attempts} attempts!`
         );
@@ -351,6 +359,14 @@ function submitGuess() {
             won: false,
             attempts: MAX_ATTEMPTS,
             word: targetWord,
+            mode: gameMode
+        });
+
+        saveGameHistory({
+            date: new Date().toISOString(),
+            word: targetWord,
+            won: false,
+            attempts: MAX_ATTEMPTS,
             mode: gameMode
         });
 
