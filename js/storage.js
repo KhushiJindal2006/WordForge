@@ -63,63 +63,67 @@ function saveStats(stats) {
    Save completed game
    --------------------------------------------------------- */
 
+/* =========================================================
+   SAVE GAME RESULT
+   ========================================================= */
+
 function saveGameResult(result) {
 
     const stats = getStats();
 
+    /* Prevent the same Daily Challenge
+       from being counted more than once per day */
+    if (result.mode === "daily") {
 
-    /* Games played */
+        const today =
+            new Date().toISOString().split("T")[0];
+
+        const lastDailyDate =
+            localStorage.getItem(
+                "wordforgeLastDailyDate"
+            );
+
+        if (lastDailyDate === today) {
+            return;
+        }
+
+        localStorage.setItem(
+            "wordforgeLastDailyDate",
+            today
+        );
+    }
+
 
     stats.gamesPlayed++;
 
 
-    /* If player won */
-
     if (result.won) {
 
         stats.gamesWon++;
-
-
-        /* Current streak */
-
         stats.currentStreak++;
-
-
-        /* Best streak */
 
         if (
             stats.currentStreak >
             stats.bestStreak
         ) {
-
             stats.bestStreak =
                 stats.currentStreak;
-
         }
-
-
-        /* Guess distribution */
 
         if (
             result.attempts >= 1 &&
             result.attempts <= 6
         ) {
-
             stats.guessDistribution[
                 result.attempts
             ]++;
-
         }
 
     } else {
 
-        /* Losing breaks the streak */
-
         stats.currentStreak = 0;
-
     }
 
 
     saveStats(stats);
-
 }
