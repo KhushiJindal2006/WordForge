@@ -6,7 +6,7 @@
 
 The application allows users to play five-letter word guessing games through different game modes. Players can attempt a Daily Challenge or play unlimited Practice games. The application also provides visual feedback for each guess and keeps track of player performance.
 
-The project is designed to demonstrate frontend development concepts including DOM manipulation, JavaScript logic, responsive CSS, browser storage, CRUD operations, and Git/GitHub version control.
+The project is designed to demonstrate frontend development concepts including DOM manipulation, JavaScript logic, responsive CSS, browser storage, and Git/GitHub version control.
 
 ---
 
@@ -23,7 +23,6 @@ The main objectives of WordForge are to:
 - Store player statistics using browser storage.
 - Maintain game history using IndexedDB.
 - Provide a dashboard for player statistics.
-- Implement CRUD operations for custom puzzles.
 - Create a responsive interface for mobile, tablet, and desktop.
 - Practice proper Git and GitHub development workflow.
 
@@ -91,27 +90,7 @@ Game history will contain information such as:
 - Number of attempts
 - Game mode
 
-The dashboard will provide search, filtering, and sorting functionality for game history.
-
-### 7. Custom Puzzle CRUD
-
-WordForge will include custom puzzle management to demonstrate CRUD operations.
-
-Users will be able to:
-
-- **Create** a custom puzzle.
-- **Read** saved puzzles.
-- **Update** an existing puzzle.
-- **Delete** a puzzle.
-
-A custom puzzle may contain:
-
-- Word
-- Hint
-- Category
-- Difficulty
-
-### 8. Dashboard
+### 7. Dashboard
 
 The dashboard will provide an overview of player performance.
 
@@ -132,9 +111,8 @@ WordForge will use different browser storage technologies for different purposes
 
 | Storage Technology | Purpose |
 |---|---|
-| `localStorage` | Player statistics, streaks, and game-related settings |
-| Cookies | Small user preferences |
-| IndexedDB | Game history and custom puzzle data |
+| `localStorage` | Player statistics, streaks |
+| `IndexedDB` | Game history  |
 
 The project will demonstrate browser-based data storage without requiring a backend server.
 
@@ -146,7 +124,6 @@ The project will demonstrate browser-based data storage without requiring a back
 - CSS3
 - JavaScript
 - LocalStorage
-- Cookies
 - IndexedDB
 - Git
 - GitHub
@@ -188,9 +165,6 @@ The dashboard page will contain:
 - Streak information
 - Guess distribution
 - Game history
-- Search
-- Filtering
-- Sorting
 
 ### Future Challenge Page
 
@@ -212,6 +186,7 @@ WordForge/
 │   ├── dashboard.js
 │   ├── game.js
 │   ├── storage.js
+|   ├── history.js
 │   └── words.js
 │
 ├── .gitignore
@@ -304,7 +279,6 @@ The application will be tested for:
 - Player statistics
 - Browser storage
 - Game history
-- CRUD operations
 - Responsive layouts
 - Data persistence after refreshing the browser
 
@@ -321,7 +295,6 @@ The main project focuses on:
 - Practice Mode
 - Player statistics
 - Game history
-- Custom puzzle CRUD
 - Dashboard
 - Responsive frontend design
 - Browser storage
@@ -363,7 +336,6 @@ WordForge is developed as a Web Fundamentals project to demonstrate practical kn
 - DOM manipulation
 - Event handling
 - Browser storage
-- CRUD operations
 - Git
 - GitHub
 
