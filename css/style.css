@@ -255,6 +255,21 @@ body {
         background-color 0.15s ease;
 }
 
+/* Letter tile animation */
+.letter-tile:not(:empty) {
+    animation: tilePop 0.12s ease;
+}
+
+@keyframes tilePop {
+    0% {
+        transform: scale(0.85);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
 
 /* These classes will be used by JavaScript later */
 
