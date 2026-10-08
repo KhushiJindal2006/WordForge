@@ -326,13 +326,31 @@ function submitGuess() {
             mode: gameMode
         });
 
-        saveGameHistory({
-            date: new Date().toISOString(),
-            word: targetWord,
-            won: true,
-            attempts: attempts,
-            mode: gameMode
-        });
+
+        // Save game history
+        // Daily can only be recorded once per day
+        if (
+            gameMode === "practice" ||
+            !localStorage.getItem("wordforgeDailyHistoryDate")
+        ) {
+
+            saveGameHistory({
+                date: new Date().toISOString(),
+                word: targetWord,
+                won: true,
+                attempts: attempts,
+                mode: gameMode
+            });
+
+            if (gameMode === "daily") {
+
+                localStorage.setItem(
+                    "wordforgeDailyHistoryDate",
+                    new Date().toISOString().split("T")[0]
+                );
+            }
+        }
+
 
         showMessage(
             `You won in ${attempts} attempts!`
@@ -362,13 +380,31 @@ function submitGuess() {
             mode: gameMode
         });
 
-        saveGameHistory({
-            date: new Date().toISOString(),
-            word: targetWord,
-            won: false,
-            attempts: MAX_ATTEMPTS,
-            mode: gameMode
-        });
+
+        // Save game history
+        // Daily can only be recorded once per day
+        if (
+            gameMode === "practice" ||
+            !localStorage.getItem("wordforgeDailyHistoryDate")
+        ) {
+
+            saveGameHistory({
+                date: new Date().toISOString(),
+                word: targetWord,
+                won: false,
+                attempts: MAX_ATTEMPTS,
+                mode: gameMode
+            });
+
+            if (gameMode === "daily") {
+
+                localStorage.setItem(
+                    "wordforgeDailyHistoryDate",
+                    new Date().toISOString().split("T")[0]
+                );
+            }
+        }
+
 
         showMessage(
             `Game over! The word was ${targetWord}.`
@@ -579,7 +615,7 @@ keyboardKeys.forEach(key => {
 /* =========================================================
    PHYSICAL KEYBOARD EVENTS
    ========================================================= */
-   
+
 document.addEventListener("keydown", event => {
     const key = event.key.toUpperCase();
 
