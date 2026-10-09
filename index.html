@@ -1,21 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-    <meta
-        name="description"
-        content="WordForge - A modern word puzzle and statistics platform."
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WordForge - A modern word puzzle and statistics platform.">
 
     <title>WordForge - Word Puzzle</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+
 
     <!-- ==================== HEADER ==================== -->
     <header class="site-header">
@@ -27,18 +23,185 @@
             </a>
 
             <nav class="main-nav" aria-label="Main navigation">
+
                 <a href="index.html" class="nav-link active">
                     Game
                 </a>
 
+                <button type="button" id="how-to-play-button" class="nav-link how-to-play-button" aria-haspopup="dialog"
+                    aria-controls="how-to-play-modal">
+                    How to Play
+                </button>
+
                 <a href="dashboard.html" class="nav-link">
                     Dashboard
                 </a>
+
             </nav>
 
         </div>
 
     </header>
+
+ 
+    <!-- ==================== HOW TO PLAY MODAL ==================== -->
+    <div class="modal-overlay" id="how-to-play-modal" role="dialog" aria-modal="true"
+        aria-labelledby="how-to-play-title" hidden>
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <div>
+                    <p class="modal-eyebrow">NEW TO WORDFORGE?</p>
+                    <h2 id="how-to-play-title">How to Play</h2>
+                    <p class="modal-subtitle">
+                        A little guide to get you started.
+                    </p>
+                </div>
+
+                <button type="button" class="modal-close" id="close-how-to-play" aria-label="Close instructions">
+                    &times;
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <!-- Game Rules -->
+                <section class="rules-section">
+                    <h3>The Rules</h3>
+
+                    <ul class="rules-list">
+                        <li>
+                            <span class="rule-number">1</span>
+                            <span>
+                                <strong>Find the hidden word.</strong>
+                                Guess a five-letter word to uncover the answer.
+                            </span>
+                        </li>
+
+                        <li>
+                            <span class="rule-number">2</span>
+                            <span>
+                                <strong>You get six attempts.</strong>
+                                Each guess must contain five letters.
+                            </span>
+                        </li>
+
+                        <li>
+                            <span class="rule-number">3</span>
+                            <span>
+                                <strong>Watch the tile colours.</strong>
+                                The colours give you clues after each guess.
+                            </span>
+                        </li>
+
+                        <li>
+                            <span class="rule-number">4</span>
+                            <span>
+                                <strong>Use the clues wisely.</strong>
+                                Adjust your next guess until you find the word.
+                            </span>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Colour Guide -->
+                <section class="rules-section">
+                    <h3>What Do the Colours Mean?</h3>
+
+                    <div class="colour-guide">
+
+                        <div class="colour-item">
+                            <div class="example-tile tile-green">W</div>
+                            <div>
+                                <strong>Green — Perfect Match</strong>
+                                <p>
+                                    The letter is in the word and in the
+                                    correct position.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="colour-item">
+                            <div class="example-tile tile-yellow">O</div>
+                            <div>
+                                <strong>Yellow — Wrong Position</strong>
+                                <p>
+                                    The letter is in the word, but belongs
+                                    in a different position.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="colour-item">
+                            <div class="example-tile tile-gray">R</div>
+                            <div>
+                                <strong>Gray — Not in the Word</strong>
+                                <p>
+                                    The letter is not in the word, or no
+                                    unused occurrence remains.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+
+                <!-- Quick Example -->
+                <section class="rules-section example-section">
+                    <h3>Quick Example</h3>
+
+                    <p class="example-description">
+                        Imagine the hidden word is <strong>PLANT</strong>
+                        and your guess is <strong>CRANE</strong>.
+                    </p>
+
+                    <div class="example-word" aria-label="Example guess CRANE">
+                        <div class="example-tile tile-gray">C</div>
+                        <div class="example-tile tile-gray">R</div>
+                        <div class="example-tile tile-green">A</div>
+                        <div class="example-tile tile-green">N</div>
+                        <div class="example-tile tile-gray">E</div>
+                    </div>
+
+                    <p class="example-note">
+                        A and N are green because they are in the correct positions.
+                        C, R and E are gray because they are not in the hidden word.
+                    </p>
+                </section>
+
+
+                <!-- Controls -->
+                <section class="rules-section controls-section">
+                    <h3>Controls</h3>
+
+                    <div class="control-item">
+                        <span class="control-key">ENTER</span>
+                        <span>Submit your guess</span>
+                    </div>
+
+                    <div class="control-item">
+                        <span class="control-key">BACKSPACE</span>
+                        <span>Remove the last letter</span>
+                    </div>
+
+                    <p class="controls-note">
+                        You can use either your physical keyboard or the
+                        on-screen keyboard.
+                    </p>
+                </section>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="primary-button" id="got-it-button">
+                    Got it, let's play!
+                </button>
+            </div>
+
+        </div>
+    </div>
+    
 
 
     <!-- ==================== MAIN CONTENT ==================== -->
@@ -47,7 +210,7 @@
         <!-- Game introduction -->
         <section class="game-intro">
 
-            <p class="game-mode">
+            <p class="game-mode" id="game-mode-label">
                 DAILY CHALLENGE
             </p>
 
@@ -61,16 +224,9 @@
 
 
         <!-- ==================== GAME BOARD ==================== -->
-        <section
-            class="game-section"
-            aria-label="Word guessing game"
-        >
+        <section class="game-section" aria-label="Word guessing game">
 
-            <div
-                id="game-board"
-                class="game-board"
-                aria-label="Game board"
-            >
+            <div id="game-board" class="game-board" aria-label="Game board">
 
                 <!-- Row 1 -->
                 <div class="guess-row">
@@ -132,20 +288,13 @@
 
 
         <!-- ==================== MESSAGE ==================== -->
-        <section
-            id="game-message"
-            class="game-message"
-            aria-live="polite"
-        >
+        <section id="game-message" class="game-message" aria-live="polite">
             <p>Start guessing!</p>
         </section>
 
 
         <!-- ==================== KEYBOARD ==================== -->
-        <section
-            class="keyboard-section"
-            aria-label="Virtual keyboard"
-        >
+        <section class="keyboard-section" aria-label="Virtual keyboard">
 
             <div class="keyboard-row">
 
@@ -180,10 +329,7 @@
 
             <div class="keyboard-row">
 
-                <button
-                    class="key key-wide"
-                    data-key="ENTER"
-                >
+                <button class="key key-wide" data-key="ENTER">
                     ENTER
                 </button>
 
@@ -195,11 +341,7 @@
                 <button class="key" data-key="N">N</button>
                 <button class="key" data-key="M">M</button>
 
-                <button
-                    class="key key-wide"
-                    data-key="BACKSPACE"
-                    aria-label="Backspace"
-                >
+                <button class="key key-wide" data-key="BACKSPACE" aria-label="Backspace">
                     ←
                 </button>
 
@@ -215,11 +357,7 @@
                 Want to keep playing?
             </p>
 
-            <button
-                id="practice-button"
-                class="secondary-button"
-                type="button"
-            >
+            <button id="practice-button" class="secondary-button" type="button">
                 Practice Mode
             </button>
 
@@ -243,6 +381,8 @@
     <script src="js/words.js"></script>
     <script src="js/history.js"></script>
     <script src="js/game.js"></script>
+    <script src="js/how-to-play.js"></script>
 
 </body>
+
 </html>

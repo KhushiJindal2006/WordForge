@@ -50,15 +50,51 @@ function displayStats() {
     );
 }
 
-function displayGuessDistribution(distribution) {
-    for (let attempt = 1; attempt <= 6; attempt++) {
-        const element =
-            document.getElementById(`guess-${attempt}`);
 
-        element.textContent =
-            distribution[attempt];
+
+function displayGuessDistribution(distribution) {
+    const counts = [];
+
+    for (let attempt = 1; attempt <= 6; attempt++) {
+        counts.push(Number(distribution[attempt]) || 0);
+    }
+
+    const maxCount = Math.max(...counts, 1);
+
+    for (let attempt = 1; attempt <= 6; attempt++) {
+        const element = document.getElementById(`guess-${attempt}`);
+
+        if (!element) continue;
+
+        const count = counts[attempt - 1];
+        element.textContent = count;
+
+        const bar = element.closest(".distribution-bar");
+
+        if (!bar) continue;
+
+        // Remove previous highlighting.
+        bar.classList.remove("highlight");
+
+        // Keep zero-count bars visible without overflowing.
+        bar.style.width = "100%";
+        bar.style.minWidth = "0";
+        bar.style.flex = "1";
+
+        // Use a child fill to show the proportional count.
+        let fill = bar.querySelector(".distribution-fill");
+
+        if (!fill) {
+            fill = document.createElement("div");
+            fill.className = "distribution-fill";
+            bar.prepend(fill);
+        }
+
+        fill.style.width = `${(count / maxCount) * 100}%`;
     }
 }
+
+
 
 async function displayHistory() {
 
@@ -99,11 +135,19 @@ async function displayHistory() {
             const result =
                 game.won ? "Won" : "Lost";
 
+            const resultClass = game.won ? "result-won" : "result-lost";
+
             row.innerHTML = `
                 <td>${formattedDate}</td>
                 <td>${game.mode}</td>
                 <td>${game.word}</td>
-                <td>${result}</td>
+                
+                <td>
+                <span class="result-badge ${resultClass}">
+                    ${result}
+                </span>
+                </td>
+                
                 <td>${game.attempts}</td>
                 <td>
                 <button

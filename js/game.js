@@ -53,6 +53,13 @@ function startGame(mode = "daily") {
 
     gameMode = mode;
 
+    const modeLabel = document.getElementById("game-mode-label");
+    if (modeLabel) {
+        modeLabel.textContent =
+            gameMode === "daily"
+                ? "DAILY CHALLENGE"
+                : "PRACTICE MODE";
+    }
 
     if (gameMode === "daily") {
 
@@ -329,11 +336,13 @@ function submitGuess() {
 
         // Save game history
         // Daily can only be recorded once per day
+
+        const today = new Date().toLocaleDateString("en-CA");
+
         if (
             gameMode === "practice" ||
-            !localStorage.getItem("wordforgeDailyHistoryDate")
+            localStorage.getItem("wordforgeDailyHistoryDate") !== today
         ) {
-
             saveGameHistory({
                 date: new Date().toISOString(),
                 word: targetWord,
@@ -343,11 +352,11 @@ function submitGuess() {
             });
 
             if (gameMode === "daily") {
-
                 localStorage.setItem(
                     "wordforgeDailyHistoryDate",
-                    new Date().toISOString().split("T")[0]
+                    today
                 );
+
             }
         }
 
@@ -383,9 +392,10 @@ function submitGuess() {
 
         // Save game history
         // Daily can only be recorded once per day
+        const today = new Date().toLocaleDateString("en-CA");
         if (
             gameMode === "practice" ||
-            !localStorage.getItem("wordforgeDailyHistoryDate")
+            localStorage.getItem("wordforgeDailyHistoryDate") !== today
         ) {
 
             saveGameHistory({
@@ -397,11 +407,11 @@ function submitGuess() {
             });
 
             if (gameMode === "daily") {
-
                 localStorage.setItem(
                     "wordforgeDailyHistoryDate",
-                    new Date().toISOString().split("T")[0]
+                    today
                 );
+
             }
         }
 
